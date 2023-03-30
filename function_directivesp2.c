@@ -12,12 +12,12 @@
  * Return: Number of digits
  *
  */
-int octal(va_list ptr)
+int octal(va_list *ptr)
 {
 	int num, n_temp, i, count = 0;
 	char *p_temp;
 
-	num = va_arg(ptr, int);
+	num = va_arg(*(ptr), int);
 	n_temp = num;
 	while (n_temp > 7)
 	{
@@ -50,13 +50,13 @@ int octal(va_list ptr)
  * Return: Number of digits
  *
  */
-int hexa_lower(va_list ptr)
+int hexa_lower(va_list *ptr)
 {
 	int temp, num;
 	int a, count = 0;
 	char *p_temp;
 
-	temp = va_arg(ptr, int);
+	temp = va_arg(*(ptr), int);
 	num = temp;
 	while (num != 0)
 	{
@@ -91,13 +91,13 @@ int hexa_lower(va_list ptr)
  * Return: Number of digits
  *
  */
-int hexa_upper(va_list ptr)
+int hexa_upper(va_list *ptr)
 {
 	int temp, num;
 	int a, count = 0;
 	char *p_temp;
 
-	temp = va_arg(ptr, int);
+	temp = va_arg(*(ptr), int);
 	num = temp;
 	while (num != 0)
 	{

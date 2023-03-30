@@ -60,7 +60,7 @@ int _printf(const char *format, ...)
 			{
 				if (*((ops + j)->op) == *(format + i + 1))
 				{
-					count_chars = (ops + j)->f(ptr);
+					count_chars = (ops + j)->f(&ptr);
 					total_chars += count_chars;
 					i += 2;
 					break;

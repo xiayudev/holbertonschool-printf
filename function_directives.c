@@ -12,12 +12,12 @@
  * Return: Number of characters
  *
  */
-int character(va_list ptr)
+int character(va_list *ptr)
 {
 	int i;
 
 	i = 1;
-	_putchar(va_arg(ptr, int));
+	_putchar(va_arg(*(ptr), int));
 	return (i);
 }
 
@@ -30,15 +30,15 @@ int character(va_list ptr)
  * Return: Number of characters
  *
  */
-int string(va_list ptr)
+int string(va_list *ptr)
 {
 	char *s;
 	unsigned int count;
 
-	s = va_arg(ptr, char*);
+	s = va_arg(*(ptr), char*);
 	if (!s)
 	{
-		write(1, " ", 1);
+		write(1, '\0', 1);
 		return (0);
 	}
 	count = _strlen(s);
@@ -55,12 +55,11 @@ int string(va_list ptr)
  * Return: Void
  *
  */
-int integer(va_list ptr)
+int integer(va_list *ptr)
 {
 	int temp, num_chars;
 
-	temp = va_arg(ptr, int);
-
+	temp = va_arg(*(ptr), int);
 	num_chars = num_digits((temp < 0) ? (temp * -1) : temp);
 	if (temp < 0)
 	{
@@ -81,12 +80,12 @@ int integer(va_list ptr)
  * Return: Number of digits
  *
  */
-int u_integer(va_list ptr)
+int u_integer(va_list *ptr)
 {
 	int num_chars;
 	unsigned int temp;
 
-	temp = va_arg(ptr, int);
+	temp = va_arg(*(ptr), unsigned int);
 	num_chars = num_digits(temp);
 	recursive_print(temp);
 	return (num_chars);
@@ -101,12 +100,12 @@ int u_integer(va_list ptr)
  * Return: Number of digits
  *
  */
-int binary(va_list ptr)
+int binary(va_list *ptr)
 {
 	int num, n_temp, i, count = 0;
 	char *p_temp;
 
-	num = va_arg(ptr, int);
+	num = va_arg(*(ptr), int);
 	n_temp = num;
 	while (n_temp > 1)
 	{
