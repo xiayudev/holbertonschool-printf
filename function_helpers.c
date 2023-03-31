@@ -40,18 +40,18 @@ int _putchar(char c)
  * Count the number of digits
  * Return: The number of digits.
  */
-int num_digits(int i)
+int num_digits(unsigned int i)
 {
-	int count, temp;
+	int count;
+	unsigned int temp;
 
 	temp = i;
 	count = 0;
-	while (temp / 10)
+	while (temp)
 	{
 		temp /= 10;
 		count++;
 	}
-	count++;
 	return (count);
 }
 
@@ -63,7 +63,7 @@ int num_digits(int i)
  * Return: Void
  *
  */
-void recursive_print(int n)
+void recursive_print(unsigned int n)
 {
 	if (n / 10)
 		recursive_print(n / 10);

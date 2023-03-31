@@ -1,0 +1,55 @@
+.TH _PRINTF 3
+.SH NAME
+_printf \- format and print data
+.SH SYNOPSIS
+.PP
+.B int _printf(const char *\fIformat\fR, ...);
+.PP
+.SH DESCRIPTION
+The _printf function prints the ARGUMENT(s) passed according to format specifiers given in the \fIformat\fR parameter.
+You can pass as many arguments as you want but the specifiers have to match with the number of arguments. You can see more
+information in the BUGS section.
+.PP
+This function works with stdarg.h library that allows us to work with many arguments as we want. It uses \fIva_list\fR, \fIva_arg\fR,
+\fIva_start\fR and \fIva_end\fR macros.
+.PP
+The \fIformat\fR parameter is a character string which contains zero or more format specifiers. A format specifier begins with the character \fB%\fR
+followed by a \fIconversion specifier\fR. For now we will cover the specifiers: \fB%c\fR, \fB%s\fR, \fB%%\fR, \fB%d\fR and \fB%i\fR.
+Below, the description of each specifier.
+
+.RS
+\fB%c\fR Specifier for characters i.e. \fI'c', 'x', 'm'\fR.
+.PP
+\fB%s\fR Specifier for strings (pointer to char - array of chars) i.e. \fI"Hello", "World!"\fR.
+.PP
+\fB%%\fR Specifier for percent symbol i.e. \fI"100%%", "My battery is 20%%"\fR.
+.PP
+\fB%d\fR Specifier for decimal integer (assumes base 10) i.e. \fI21, 100\fR.
+.PP
+\fB%i\fR Specifier for decimal integer (detects the base automatically) i.e. \fI18, 98\fR.
+.RE
+.SH RETURN
+The return is an int value which represents the number of charactes of the string after all specifiers has been solved.
+.SH BUGS
+No bugs known. If you found out a bug please make an issue to this repo: https//www.github.com/repo/porject.git
+.SH EXAMPLES
+When using this function, you have to pass arguments according to the type that a specifier accepts. In the example below you will see how to
+use the function properly.
+.PP
+.RS
+.nf
+#include "main.h"
+
+\fIchar\fR *name = "Joshua";
+\fIchar\fR initial = 'C';
+\fIint\fR age = 24;
+\fIint\fR year = 'C';
+
+_printf("Hi!, my name is %s. My initial is %c. My battery is 37%%\n", );
+_printf("I am %d years old. I was born in %i\n", age, year);
+
+/* The spected output is 1: Hi!, my name is Joshua. My battery is 37% */
+/* The spected output is 2: I am 24 years old. I was born in 1998 */
+.RE
+.SH AUTHOR
+Josue Cerron - Junior Developer - github: https//www.github.com/xiayudev

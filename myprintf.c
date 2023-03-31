@@ -5,28 +5,49 @@
 #include "main.h"
 
 /**
- * m_modulo - function
+ * operation - function
  * @format: The value passed
  * @i: Pointer to the iterator
- * @total_chars: Pointer to the count of chars
- * Prints an integer recursively
+ * @total: Pointer to the count of chars
+ * @ops: Array of structures
+ * @ptr: Argumnets passed
+ * @flag: Flag to know if a specifiers is found
+ *
+ * Makes operation according to specifiers
  *
  * Return: Void
  *
  */
-void m_modulo(const char *format, int *i, int *total_chars)
+void operation(const char *format, int *i, int *total, op_t ops[],
+		va_list ptr, int *flag)
 {
+	int j, count_chars;
+
 	if (*(format + *i + 1) == '%')
 	{
 		_putchar('%');
-		*total_chars += 1;
+		*total += 1;
+		*flag = 1;
 		*i += 1;
 	}
 	else
 	{
-		_putchar(*(format + *i));
-		*total_chars += 1;
+		j = 0;
+		while ((ops + j)->op)
+		{
+			if (*((ops + j)->op) == *(format + *i + 1))
+			{
+				count_chars = (ops + j)->f(ptr);
+				*total += count_chars;
+				*flag = 1;
+				*i += 1;
+				break;
+			}
+			j++;
+		}
+
 	}
+
 }
 
 /**
@@ -40,7 +61,7 @@ void m_modulo(const char *format, int *i, int *total_chars)
 int _printf(const char *format, ...)
 {
 	va_list ptr;
-	int i, j, count_chars, total_chars = 0;
+	int i, total = 0, flag = 0;
 	op_t ops[] = {
 		{"c", character}, {"s", string}, {"d", integer},
 		{"i", integer},	{"u", u_integer}, {"b", binary},
@@ -53,28 +74,22 @@ int _printf(const char *format, ...)
 	i = 0;
 	while (*(format + i))
 	{
+		flag = 0;
 		if (*(format + i) == '%')
 		{
-			j = 0;
-			while ((ops + j)->op)
+			operation (format, &i, &total, ops, ptr, &flag);
+			if(!flag)
 			{
-				if (*((ops + j)->op) == *(format + i + 1))
-				{
-					count_chars = (ops + j)->f(&ptr);
-					total_chars += count_chars;
-					i += 2;
-					break;
-				}
-				j++;
+				_putchar(*(format + i));
+				total++;
 			}
-			m_modulo(format, &i, &total_chars);
 		}
 		else
 		{
 			_putchar(*(format + i));
-			total_chars++;
+			total++;
 		}
 		i++;
 	}
-	return (total_chars);
+	return (total);
 }
