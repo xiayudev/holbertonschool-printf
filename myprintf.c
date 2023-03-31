@@ -72,13 +72,14 @@ int _printf(const char *format, ...)
 	if (!format)
 		return (-1);
 	i = 0;
-	while (*(format + i))
+	while (*(format + i) && _strlen((char *)format) > 2)
 	{
 		flag = 0;
 		if (*(format + i) == '%')
 		{
-			operation (format, &i, &total, ops, ptr, &flag);
-			if(!flag)
+			operation(format, &i, &total, ops, ptr, &flag);
+
+			if (!flag)
 			{
 				_putchar(*(format + i));
 				total++;

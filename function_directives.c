@@ -79,6 +79,8 @@ int integer(va_list ptr)
 	}
 	else
 		recursive_print(temp);
+	if (temp < 0)
+		return (num_chars + 1);
 	return (num_chars);
 }
 
