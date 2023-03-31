@@ -45,9 +45,7 @@ void operation(const char *format, int *i, int *total, op_t ops[],
 			}
 			j++;
 		}
-
 	}
-
 }
 
 /**
@@ -69,17 +67,17 @@ int _printf(const char *format, ...)
 		{NULL, NULL}
 	};
 	va_start(ptr, format);
-	if (!format)
+	if (!format || !format[1])
 		return (-1);
 	i = 0;
-	while (*(format + i) && _strlen((char *)format) > 2)
+	while (*(format + i))
 	{
 		flag = 0;
 		if (*(format + i) == '%')
 		{
 			operation(format, &i, &total, ops, ptr, &flag);
 
-			if (!flag)
+			if (flag == 0 && *(format + i + 1) != '\0')
 			{
 				_putchar(*(format + i));
 				total++;

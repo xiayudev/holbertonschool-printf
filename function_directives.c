@@ -63,25 +63,28 @@ int string(va_list ptr)
 int integer(va_list ptr)
 {
 	int temp;
-	unsigned int num_chars;
+	int num_chars;
 
 	temp = va_arg(ptr, int);
 	if (!temp)
 	{
 		_putchar('0');
-		return (2);
+		return (1);
 	}
-	num_chars = num_digits((temp < 0) ? (temp * -1) : temp);
+	num_chars = num_digits((temp < 0)
+			? ((unsigned int)temp * -1)
+			: (unsigned int)temp);
 	if (temp < 0)
 	{
 		_putchar('-');
-		recursive_print(temp * -1);
+		recursive_print((unsigned int)temp * -1);
+		return (num_chars + 1);
 	}
 	else
-		recursive_print(temp);
-	if (temp < 0)
-		return (num_chars + 1);
-	return (num_chars);
+	{
+		recursive_print((unsigned int)temp);
+		return (num_chars);
+	}
 }
 
 /**
