@@ -15,7 +15,7 @@
 int character(va_list *ptr)
 {
 	int i = 1, c;
-	
+
 	c = va_arg(*(ptr), int) != 0;
 	if (!c)
 	{
