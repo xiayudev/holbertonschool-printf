@@ -14,9 +14,8 @@ int _strlen(char *s)
 	int length;
 
 	length = 0;
-	while (*s != '\0')
+	while (*(s + length))
 	{
-		s++;
 		length++;
 	}
 	return (length);
@@ -43,12 +42,13 @@ int _putchar(char c)
  */
 int num_digits(int i)
 {
-	int count;
+	int count, temp;
 
+	temp = i;
 	count = 0;
-	while (i / 10)
+	while (temp / 10)
 	{
-		i /= 10;
+		temp /= 10;
 		count++;
 	}
 	count++;

@@ -14,12 +14,13 @@
  */
 int octal(va_list *ptr)
 {
-	int num, n_temp, i, count = 0;
+	unsigned int num, n_temp;
+	int i, count = 0;
 	char *p_temp;
 
-	num = va_arg(*(ptr), int);
+	num = va_arg(*(ptr), unsigned int);
 	n_temp = num;
-	while (n_temp > 7)
+	while (n_temp)
 	{
 		n_temp /= 8;
 		count++;
@@ -29,7 +30,7 @@ int octal(va_list *ptr)
 		return (0);
 
 	i = 0;
-	while (num != 0)
+	while (num)
 	{
 		*(p_temp + i) = (num % 8) + '0';
 		num /= 8;
@@ -52,13 +53,13 @@ int octal(va_list *ptr)
  */
 int hexa_lower(va_list *ptr)
 {
-	int temp, num;
+	unsigned int temp, num;
 	int a, count = 0;
 	char *p_temp;
 
-	temp = va_arg(*(ptr), int);
+	temp = va_arg(*(ptr), unsigned int);
 	num = temp;
-	while (num != 0)
+	while (num)
 	{
 		num /= 16;
 		count++;
@@ -67,7 +68,7 @@ int hexa_lower(va_list *ptr)
 	if (!p_temp)
 		return (0);
 	a = 0;
-	while (temp != 0)
+	while (temp)
 	{
 		if (temp % 16 < 10)
 			*(p_temp + a) = (temp % 16) + 48;

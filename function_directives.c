@@ -14,10 +14,15 @@
  */
 int character(va_list *ptr)
 {
-	int i;
-
-	i = 1;
-	_putchar(va_arg(*(ptr), int));
+	int i = 1, c;
+	
+	c = va_arg(*(ptr), int) != 0;
+	if (!c)
+	{
+		_putchar('\0');
+		return (0);
+	}
+	_putchar(c);
 	return (i);
 }
 
@@ -33,9 +38,9 @@ int character(va_list *ptr)
 int string(va_list *ptr)
 {
 	char *s;
-	unsigned int count;
+	int count;
 
-	s = va_arg(*(ptr), char*);
+	s = va_arg(*(ptr), char *);
 	if (!s)
 	{
 		write(1, '\0', 1);
@@ -60,6 +65,11 @@ int integer(va_list *ptr)
 	int temp, num_chars;
 
 	temp = va_arg(*(ptr), int);
+	if (!temp)
+	{
+		_putchar('0');
+		return (0);
+	}
 	num_chars = num_digits((temp < 0) ? (temp * -1) : temp);
 	if (temp < 0)
 	{
