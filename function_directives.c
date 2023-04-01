@@ -102,6 +102,11 @@ int u_integer(va_list ptr)
 	unsigned int temp;
 
 	temp = va_arg(ptr, unsigned int);
+	if (temp == 0)
+	{
+		_putchar(temp + '0');
+		return (1);
+	}
 	if (!temp)
 	{
 		_putchar('\0');

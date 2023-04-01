@@ -20,6 +20,16 @@ int octal(va_list ptr)
 
 	num = va_arg(ptr, unsigned int);
 	n_temp = num;
+	if (n_temp == 0)
+	{
+		_putchar(n_temp + '0');
+		return (1);
+	}
+	if (n_temp == 0)
+	{
+		_putchar(n_temp + '0');
+		return (1);
+	}
 	while (n_temp)
 	{
 		n_temp /= 8;
@@ -59,6 +69,11 @@ int hexa_lower(va_list ptr)
 
 	temp = va_arg(ptr, unsigned int);
 	num = temp;
+	if (num == 0)
+	{
+		_putchar(num + '0');
+		return (1);
+	}
 	while (num)
 	{
 		num /= 16;
@@ -94,12 +109,17 @@ int hexa_lower(va_list ptr)
  */
 int hexa_upper(va_list ptr)
 {
-	int temp, num;
+	unsigned int temp, num;
 	int a, count = 0;
 	char *p_temp;
 
-	temp = va_arg(ptr, int);
+	temp = va_arg(ptr, unsigned int);
 	num = temp;
+	if (temp == 0)
+	{
+		_putchar(temp + '0');
+		return (1);
+	}
 	while (num)
 	{
 		num /= 16;

@@ -14,9 +14,9 @@ This function works with stdarg.h library that allows us to work with many argum
 \fIva_start\fR and \fIva_end\fR macros.
 .PP
 The \fIformat\fR parameter is a character string which contains zero or more format specifiers. A format specifier begins with the character \fB%\fR
-followed by a \fIconversion specifier\fR. For now we will cover the specifiers: \fB%c\fR, \fB%s\fR, \fB%%\fR, \fB%d\fR and \fB%i\fR.
-Below, the description of each specifier.
-
+followed by a \fIconversion specifier\fR. For now we have the following specifiers: 
+\fB%c\fR, \fB%s\fR, \fB%b\fR, \fB%%\fR, \fB%d\fR and \fB%i\fR.
+Below, the description of each specifier. The symbol \fB->\fR means: the expected output.
 .RS
 \fB%c\fR Specifier for characters i.e. \fI'c', 'x', 'm'\fR.
 .PP
@@ -24,9 +24,20 @@ Below, the description of each specifier.
 .PP
 \fB%%\fR Specifier for percent symbol i.e. \fI"100%%", "My battery is 20%%"\fR.
 .PP
-\fB%d\fR Specifier for decimal integer (assumes base 10) i.e. \fI21, 100\fR.
+\fB%d\fR Specifier for signed decimal integer (assumes base 10) i.e. \fI21, 100, -58\fR.
 .PP
 \fB%i\fR Specifier for decimal integer (detects the base automatically) i.e. \fI18, 98\fR.
+:PP
+\fB%b\fR Specifier for converting decimal to binaries i.e. \fI24->"11000", 1024->"10000000000", etc\fR.
+.PP
+\fB%u\fR Specifier for unsigned decimal integer i.e. \fI224, 1024, etc\fR.
+.PP
+\fB%x\fR Specifier for converting unsigned decimal to hexadecimal in lower i.e. \fI-1024->"fffffc00", 1024->"400", etc\fR.
+.PP
+\fB%X\fR Specifier for converting unsigned decimal to hexadecimal in upper i.e. \fI-1024->"FFFFFC00", 1024->"400", etc\fR.
+.PP
+\fB%o\fR Specifier for converting decimal to octal representation i.e. \fI24->"30", 1024->"2000", etc\fR.
+.PP
 .RE
 .SH RETURN
 The return is an int value which represents the number of charactes of the string after all specifiers has been solved.
@@ -47,9 +58,11 @@ use the function properly.
 
 _printf("Hi!, my name is %s. My initial is %c. My battery is 37%%\n", );
 _printf("I am %d years old. I was born in %i\n", age, year);
+_printf("%b\n", 1024);
 
 /* The spected output is 1: Hi!, my name is Joshua. My battery is 37% */
 /* The spected output is 2: I am 24 years old. I was born in 1998 */
+/* The spected output is 3: 10000000000 */
 .RE
 .SH AUTHOR
 Josue Cerron - Junior Developer - github: https//www.github.com/xiayudev
