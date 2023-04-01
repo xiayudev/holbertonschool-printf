@@ -132,7 +132,6 @@ int binary(va_list ptr)
 	p_temp = calloc(33, 1);
 	if (!p_temp)
 		return (0);
-
 	if (num == 0)
 	{
 		putchar(num + '0');
@@ -145,9 +144,9 @@ int binary(va_list ptr)
 		num /= 2;
 		if (!num && n_temp < 0)
 		{
+			flag = 1;
 			while (i >= 0)
 			{
-				flag = 1;
 				*(p_temp + i) = '1';
 				count++;
 				i--;
@@ -159,7 +158,10 @@ int binary(va_list ptr)
 		i--;
 	}
 	*(p_temp + 32) = '\0';
-	write(1, p_temp, 32);
+	if (n_temp < 0)
+		write(1, p_temp, count);
+	else
+		write(1, (p_temp + i + 1), count);
 	free(p_temp);
 	return (count);
 }
