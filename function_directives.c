@@ -124,29 +124,42 @@ int u_integer(va_list ptr)
  */
 int binary(va_list ptr)
 {
-	int num, n_temp, i, count = 0;
+	int num, i, n_temp, count = 0, flag = 0;
 	char *p_temp;
 
 	num = va_arg(ptr, int);
 	n_temp = num;
-	while (n_temp)
-	{
-		n_temp /= 2;
-		count++;
-	}
-	p_temp = malloc(count + 1);
+	p_temp = calloc(33, 1);
 	if (!p_temp)
 		return (0);
 
-	i = 0;
+	if (num == 0)
+	{
+		putchar(num + '0');
+		return (1);
+	}
+	i = 31;
 	while (num)
 	{
 		*(p_temp + i) = (num % 2) + '0';
 		num /= 2;
-		i++;
+		if (!num && n_temp < 0)
+		{
+			while (i >= 0)
+			{
+				flag = 1;
+				*(p_temp + i) = '1';
+				count++;
+				i--;
+			}
+		}
+		if (flag)
+			break;
+		count++;
+		i--;
 	}
-	*(p_temp + i) = '\0';
-	_print_rev_chars(p_temp);
+	*(p_temp + 32) = '\0';
+	write(1, p_temp, 32);
 	free(p_temp);
 	return (count);
 }
