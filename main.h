@@ -6,6 +6,7 @@
 int _putchar(char c);
 int _printf(const char *format, ...);
 int _strlen(char *);
+int hexa_upper2(int);
 
 /* DIRECTIVES */
 int character(va_list);
@@ -16,6 +17,7 @@ int binary(va_list);
 int octal(va_list);
 int hexa_lower(va_list);
 int hexa_upper(va_list);
+int custom_string(va_list);
 /* DIRECTIVES */
 int num_digits(unsigned int);
 void _print_rev_chars(char *);

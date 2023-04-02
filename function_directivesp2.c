@@ -143,3 +143,44 @@ int hexa_upper(va_list ptr)
 	free(p_temp);
 	return (count);
 }
+
+/**
+ * custom_string - function
+ * @ptr: The list of arguments passed
+ *
+ * Prints string with no printables characters in upper hexadecimal
+ *
+ * Return: Number of digits
+ *
+ */
+int custom_string(va_list ptr)
+{
+	char *s, c;
+	int count = 0, spec, i;
+
+	s = va_arg(ptr, char *);
+	if (!s)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	i = 0;
+	while (*(s + i))
+	{
+		c = *(s + i);
+		if ((c > 0 && c < 32) || c >= 127)
+		{
+			write(1, "\\x", 2);
+			spec = c;
+			hexa_upper2(spec);
+			count += 4;
+		}
+		else
+		{
+			_putchar(*(s + i));
+			count++;
+		}
+		i++;
+	}
+	return (count);
+}
