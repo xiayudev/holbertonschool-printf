@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <stdio.h>
 
+#define SIZE_OF_BUFF 1024
+
 /**
  * character - function
  * @ptr: The list of arguments passed
@@ -37,8 +39,8 @@ int character(va_list ptr)
  */
 int string(va_list ptr)
 {
-	char *s;
-	int count;
+	char *s, **grid;
+	int count, len1, len2, i, j, k;
 
 	s = va_arg(ptr, char *);
 	if (!s)
@@ -47,7 +49,35 @@ int string(va_list ptr)
 		return (6);
 	}
 	count = _strlen(s);
-	write(1, s, count);
+	len1 = count / SIZE_OF_BUFF;
+	len2 = count % SIZE_OF_BUFF;
+
+	if (len2)
+		len1++;
+	grid = alloc_grid(SIZE_OF_BUFF, len1);
+	if (!grid)
+		return (0);
+	i = 0;
+	k = 0;
+	while (i < len1)
+	{
+		j = 0;
+		while (j < SIZE_OF_BUFF && *(s + k))
+		{
+			*(*(grid + i) + j) = *(s + k);
+			j++;
+			k++;
+		}
+		i++;
+	}
+
+	i = 0;
+	while (i < len1)
+	{
+		write(1, grid[i], _strlen(grid[i]));
+		i++;
+	}
+	free_grid(grid, len1);
 	return (count);
 }
 

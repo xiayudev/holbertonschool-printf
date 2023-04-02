@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stdarg.h>
+#define TYPE_ALLOC char
 
 int _putchar(char c);
 int _printf(const char *format, ...);
@@ -19,6 +20,8 @@ int hexa_upper(va_list);
 int num_digits(unsigned int);
 void _print_rev_chars(char *);
 void recursive_print(unsigned int);
+TYPE_ALLOC **alloc_grid(int width, int height);
+void free_grid(TYPE_ALLOC **grid, int height);
 
 /**
  * struct op - Struct op
