@@ -8,7 +8,7 @@ This is a project to create a clone of printf function.
 	+ The elipsis `...` means the arguments to be passed in order to 'fill' the format specifiers.
 
 ## Flowchart
-![](https://mega.nz/file/geAzFbpB#DwvSOpLMidHcSzcyOy_dqZadGOsvw5q0osV7Qg-YuLs)
+![](https://res.cloudinary.com/djvwjnzxw/image/upload/v1680482415/_PRINTF.drawio_jlqukt.png)
 
 ## Example
 Some examples to illustrate the use of `_printf` in C.
