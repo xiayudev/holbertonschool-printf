@@ -1,7 +1,57 @@
 #include "main.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
+
+/**
+ * binary - function
+ * @ptr: The list of arguments passed
+ *
+ * Prints decimal in binary
+ *
+ * Return: Number of digits
+ *
+ */
+int binary(va_list ptr)
+{
+	int num, i, n_temp, count = 0, flag = 0;
+	char *p_temp;
+
+	num = va_arg(ptr, int);
+	n_temp = num;
+	p_temp = calloc(33, 1);
+	if (!p_temp)
+		return (0);
+	if (num == 0)
+	{
+		putchar(num + '0');
+		return (1);
+	}
+	i = 31;
+	while (num)
+	{
+		*(p_temp + i) = (num % 2) + '0';
+		num /= 2;
+		if (!num && n_temp < 0)
+		{
+			flag = 1;
+			while (i >= 0)
+			{
+				*(p_temp + i) = '1';
+				count++;
+				i--;
+			}
+		}
+		if (flag)
+			break;
+		count++;
+		i--;
+	}
+	*(p_temp + 32) = '\0';
+	if (n_temp < 0)
+		write(1, p_temp, count);
+	else
+		write(1, (p_temp + i + 1), count);
+	free(p_temp);
+	return (count);
+}
 
 /**
  * octal - function
@@ -141,46 +191,5 @@ int hexa_upper(va_list ptr)
 	*(p_temp + a) = '\0';
 	_print_rev_chars(p_temp);
 	free(p_temp);
-	return (count);
-}
-
-/**
- * custom_string - function
- * @ptr: The list of arguments passed
- *
- * Prints string with no printables characters in upper hexadecimal
- *
- * Return: Number of digits
- *
- */
-int custom_string(va_list ptr)
-{
-	char *s, c;
-	int count = 0, spec, i;
-
-	s = va_arg(ptr, char *);
-	if (!s)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	i = 0;
-	while (*(s + i))
-	{
-		c = *(s + i);
-		if ((c > 0 && c < 32) || c >= 127)
-		{
-			write(1, "\\x", 2);
-			spec = c;
-			hexa_upper2(spec);
-			count += 4;
-		}
-		else
-		{
-			_putchar(*(s + i));
-			count++;
-		}
-		i++;
-	}
 	return (count);
 }

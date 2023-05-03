@@ -64,7 +64,7 @@ int _printf(const char *format, ...)
 		{"c", character}, {"s", string}, {"d", integer},
 		{"i", integer},	{"u", u_integer}, {"b", binary},
 		{"o", octal}, {"x", hexa_lower}, {"X", hexa_upper},
-		{"S", custom_string}, {NULL, NULL}
+		{"S", no_printable_chars}, {NULL, NULL}
 	};
 	va_start(ptr, format);
 	if (!format || !format[1])

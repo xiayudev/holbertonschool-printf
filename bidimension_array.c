@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdlib.h>
 
 #define TYPE_ALLOC char
 
@@ -75,53 +74,4 @@ void free_grid(TYPE_ALLOC **grid, int height)
 		i++;
 	}
 	free(grid);
-}
-
-/**
- * hexa_upper2 - function
- * @n: The integer to be converted
- *
- * Prints decimal in hexa uppercase
- *
- * Return: void
- *
- */
-int hexa_upper2(int n)
-{
-	int a, num, num2, flag = 0, count = 0;
-	char *p_temp;
-
-	if (!n)
-		return (0);
-	num = n;
-	num2 = n;
-	while (num)
-	{
-		num /= 16;
-		count++;
-	}
-	if (count == 1)
-		count++;
-	p_temp = malloc(count + 1);
-	if (!p_temp)
-		return (0);
-	a = 0;
-	while (n)
-	{
-		if (num2 < 16 && flag == 0)
-		{
-			*(p_temp + 1) = '0';
-			flag = 1;
-		}
-		if (n % 16 < 10)
-			*(p_temp + a) = (n % 16) + 48;
-		else if (n % 16 > 9)
-			*(p_temp + a) = (n % 16) + 55;
-		n /= 16;
-		a++;
-	}
-	*(p_temp + 2) = '\0';
-	_print_rev_chars(p_temp);
-	free(p_temp);
-	return (0);
 }
