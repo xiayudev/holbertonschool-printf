@@ -72,7 +72,7 @@ _printf("The hexadecimal representation of -1024 is: %x\n", -1024);
 
 ## Author
 
-xiayudev - Developer
+Josue Cerron - Developer
 
 [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://xiayudevsportfoliov2.netlify.app/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/josuecerront94/)
